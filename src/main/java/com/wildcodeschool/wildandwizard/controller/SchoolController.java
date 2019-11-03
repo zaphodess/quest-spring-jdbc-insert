@@ -20,14 +20,6 @@ public class SchoolController {
     ) {
         model.addAttribute("school", repository.save(name, capacity, country));
 
-        return "redirect:/schools";
-    }
-
-    @GetMapping("/schools")
-    public String getAll(Model model) {
-
-        model.addAttribute("schools", repository.findAll());
-
-        return "school_get_all";
+        return "school_get";
     }
 }

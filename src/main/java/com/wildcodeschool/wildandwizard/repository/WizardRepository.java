@@ -3,8 +3,6 @@ package com.wildcodeschool.wildandwizard.repository;
 import com.wildcodeschool.wildandwizard.entity.Wizard;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 
 public class WizardRepository {
 
@@ -44,37 +42,6 @@ public class WizardRepository {
                 throw new SQLException("failed to get inserted id");
             }
         } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    public List<Wizard> findAll() {
-
-        try {
-            Connection connection = DriverManager.getConnection(
-                    DB_URL, DB_USER, DB_PASSWORD
-            );
-            PreparedStatement statement = connection.prepareStatement(
-                    "SELECT * FROM wizard;"
-            );
-            ResultSet resultSet = statement.executeQuery();
-
-            List<Wizard> wizards = new ArrayList<>();
-
-            while (resultSet.next()) {
-                Long id = resultSet.getLong("id");
-                String firstName = resultSet.getString("first_name");
-                String lastName = resultSet.getString("last_name");
-                Date birthday = resultSet.getDate("birthday");
-                String birthPlace = resultSet.getString("birth_place");
-                String biography = resultSet.getString("biography");
-                boolean muggle = resultSet.getBoolean("is_muggle");
-                wizards.add(new Wizard(id, firstName, lastName, birthday, birthPlace, biography, muggle));
-            }
-            return wizards;
-        } catch (
-                SQLException e) {
             e.printStackTrace();
         }
         return null;

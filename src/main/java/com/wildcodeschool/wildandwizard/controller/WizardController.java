@@ -26,14 +26,6 @@ public class WizardController {
         model.addAttribute("wizard", repository.save(firstName, lastName,
                 birthday, birthPlace, biography, muggle));
 
-        return "redirect:/wizards";
-    }
-
-    @GetMapping("/wizards")
-    public String getAll(Model model) {
-
-        model.addAttribute("wizards", repository.findAll());
-
-        return "wizard_get_all";
+        return "wizard_get";
     }
 }
